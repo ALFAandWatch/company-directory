@@ -1,0 +1,13 @@
+{
+   "navbar": {
+      "home": "Home",
+      "companies": "Companies",
+      "favorites": "Favorites",
+      "suggest": "Suggest"
+   },
+   "landing": {
+      "title": "Company Explorer",
+      "description": "Discover companies, analyze data and find opportunities.",
+      "cta": "Explore companies"
+   }
+}
