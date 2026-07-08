@@ -9,5 +9,11 @@
       "title": "Explorador de Empresas",
       "description": "Descubrí empresas, analizá datos y encontrá oportunidades.",
       "cta": "Explorar empresas"
+   },
+   "companies": {
+      "title": "Empresas",
+      "search": "Buscar empresas...",
+      "countryFilter": "Filtrar por país",
+      "categoryFilter": "Filtrar por categoría"
    }
 }

@@ -9,5 +9,11 @@
       "title": "Company Explorer",
       "description": "Discover companies, analyze data and find opportunities.",
       "cta": "Explore companies"
+   },
+   "companies": {
+      "title": "Companies",
+      "search": "Search companies...",
+      "countryFilter": "Filter by country",
+      "categoryFilter": "Filter by category"
    }
 }
