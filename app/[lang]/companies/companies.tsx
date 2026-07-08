@@ -3,7 +3,7 @@
 import CompanyCard from '@/components/CompanyCard';
 import { Company } from '@/types/Company';
 import { Dictionary, Lang } from '@/types/i18b';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterDropdown from '@/components/FilterDropdown';
 import { Country } from '@/types/Country';
 import getFlagEmoji from '@/utils/getFlagEmoji';
@@ -25,6 +25,9 @@ export default function CompaniesPage({
 
    const [categoryFilter, setCategoryFilter] = useState('all');
    const [countryFilter, setCountryFilter] = useState('all');
+   const [showFavorites, setShowFavorites] = useState(false);
+
+   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
 
    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
@@ -42,7 +45,12 @@ export default function CompaniesPage({
          countryFilter === 'all' ||
          company.countries.some((c) => c.id === countryFilter);
 
-      return matchesSearch && matchesCategory && matchesCountry;
+      const matchesFavorites =
+         !showFavorites || favoriteIds.includes(company.id);
+
+      return (
+         matchesSearch && matchesCategory && matchesCountry && matchesFavorites
+      );
    });
 
    const countryOptions = [
@@ -56,6 +64,30 @@ export default function CompaniesPage({
             value: c.id,
          })),
    ];
+
+   const toggleFavorite = (companyId: string) => {
+      setFavoriteIds((prev) => {
+         let updated;
+
+         if (prev.includes(companyId)) {
+            updated = prev.filter((id) => id !== companyId);
+         } else {
+            updated = [...prev, companyId];
+         }
+
+         localStorage.setItem('favorites', JSON.stringify(updated));
+
+         return updated;
+      });
+   };
+
+   useEffect(() => {
+      const stored = localStorage.getItem('favorites');
+
+      if (stored) {
+         setFavoriteIds(JSON.parse(stored));
+      }
+   }, []);
 
    return (
       <main className="p-6 max-w-4xl mx-auto">
@@ -103,11 +135,24 @@ export default function CompaniesPage({
                onChange={setCountryFilter}
                options={countryOptions}
             />
+            <button
+               onClick={() => setShowFavorites((prev) => !prev)}
+               className={`px-3 py-2 rounded-lg border border-gray-700 hover:border-gray-400 hover:cursor-pointer transition ${
+                  showFavorites ? 'bg-mist-700 text-gray-200' : 'text-gray-400'
+               }`}
+            >
+               ⭐ Favorites
+            </button>
          </div>
 
          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {displayedCompanies.map((company) => (
-               <CompanyCard key={company.id} company={company} />
+               <CompanyCard
+                  key={company.id}
+                  company={company}
+                  isFavorite={favoriteIds.includes(company.id)}
+                  onToggleFavorite={toggleFavorite}
+               />
             ))}
          </div>
       </main>

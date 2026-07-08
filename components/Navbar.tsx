@@ -41,10 +41,6 @@ export default function Navbar({ dictionary, lang }: NavbarProps) {
                   {dictionary.navbar.companies}
                </Link>
 
-               <Link href={`/${lang}/favorites`}>
-                  {dictionary.navbar.favorites}
-               </Link>
-
                <Link href={`/${lang}/suggest`}>
                   {dictionary.navbar.suggest}
                </Link>
@@ -118,13 +114,6 @@ export default function Navbar({ dictionary, lang }: NavbarProps) {
                   onClick={() => setIsOpen(false)}
                >
                   {dictionary.navbar.companies}
-               </Link>
-
-               <Link
-                  href={`/${lang}/favorites`}
-                  onClick={() => setIsOpen(false)}
-               >
-                  {dictionary.navbar.favorites}
                </Link>
 
                <Link href={`/${lang}/suggest`} onClick={() => setIsOpen(false)}>

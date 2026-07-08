@@ -1,6 +1,17 @@
 import { Company } from '@/types/Company';
+import { useEffect, useState } from 'react';
 
-export default function CompanyCard({ company }: { company: Company }) {
+type Props = {
+   company: Company;
+   isFavorite: boolean;
+   onToggleFavorite: (id: string) => void;
+};
+
+export default function CompanyCard({
+   company,
+   isFavorite,
+   onToggleFavorite,
+}: Props) {
    return (
       <div className="p-5 border rounded-2xl bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md transition flex flex-col justify-between">
          {/* TOP */}
@@ -41,7 +52,12 @@ export default function CompanyCard({ company }: { company: Company }) {
             )}
 
             {/* FUTURE: FAVORITE */}
-            <button className="text-zinc-400 hover:text-yellow-500 transition">
+            <button
+               onClick={() => onToggleFavorite(company.id)}
+               className={`transition hover:cursor-pointer hover:brightness-125 ${
+                  isFavorite ? 'text-yellow-500' : 'text-zinc-400'
+               }`}
+            >
                ★
             </button>
          </div>
