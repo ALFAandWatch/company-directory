@@ -1,7 +1,8 @@
-import { supabase } from '@/lib/supabaseServer';
+import { supabaseServer } from '@/lib/supabaseServer';
 import { getDictionary } from '@/lib/getDictionary';
 import { Lang } from '@/types/i18b';
 import CompaniesPage from './companies';
+import { div } from 'framer-motion/client';
 
 export default async function Page({
    params,
@@ -14,7 +15,12 @@ export default async function Page({
    const dict = await getDictionary(safeLang);
 
    // 🔥 fetch empresas
-   const { data: companies, error } = await supabase.from('companies').select(`
+   const {
+      data: companies,
+      count,
+      error,
+   } = await supabaseServer.from('companies').select(
+      `
       *,
       company_countries (
          countries (
@@ -23,10 +29,12 @@ export default async function Page({
             code
          )
       )
-   `);
+   `,
+      { count: 'exact' }
+   );
 
    // 🔥 fetch countries (para el filtro)
-   const { data: countries } = await supabase
+   const { data: countries } = await supabaseServer
       .from('countries')
       .select('id, name, code');
 
@@ -40,11 +48,14 @@ export default async function Page({
    }));
 
    return (
-      <CompaniesPage
-         companies={formattedCompanies}
-         countries={countries || []}
-         dictionary={dict}
-         lang={safeLang}
-      />
+      <div className="min-h-screen">
+         <CompaniesPage
+            companies={formattedCompanies}
+            countries={countries || []}
+            dictionary={dict}
+            count={count || 0}
+            lang={safeLang}
+         />
+      </div>
    );
 }

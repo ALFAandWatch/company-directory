@@ -22,7 +22,10 @@ export default async function PageLayout({
    }
 
    return (
-      <main data-lang={lang}>
+      <main
+         data-lang={lang}
+         className="relative bg-radial-[at_60%_35%] from-cyan-700/35 to-black to-80%"
+      >
          <Navbar dictionary={dict} lang={safeLang} />
          {children}
       </main>

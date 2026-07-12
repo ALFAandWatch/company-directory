@@ -12,6 +12,7 @@ type Props = {
    companies: Company[];
    countries: Country[];
    dictionary: Dictionary;
+   count: number;
    lang: Lang;
 };
 
@@ -19,6 +20,7 @@ export default function CompaniesPage({
    companies,
    countries,
    dictionary,
+   count,
    lang,
 }: Props) {
    const [search, setSearch] = useState('');
@@ -90,10 +92,13 @@ export default function CompaniesPage({
    }, []);
 
    return (
-      <main className="p-6 max-w-4xl mx-auto">
+      <main className="p-6 max-w-5xl mx-auto">
          <h1 className="text-3xl font-bold mb-6">
             {dictionary.companies.title}
          </h1>
+         <h2 className="text-lg text-gray-400 mb-6">
+            {dictionary.companies.description}
+         </h2>
 
          <input
             id="search"
@@ -102,7 +107,7 @@ export default function CompaniesPage({
             placeholder={dictionary.companies.search}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full mb-4 px-4 py-2 border border-gray-700 rounded-lg focus:border-gray-400 focus:outline-none"
+            className="w-full mb-4 px-4 py-2 bg-black/40 border border-gray-700 rounded-lg focus:border-gray-400 focus:outline-none"
          />
 
          <div className="flex flex-wrap gap-3 mb-6">
@@ -115,7 +120,7 @@ export default function CompaniesPage({
                   )
                }
                selected={categoryFilter}
-               onChange={setCategoryFilter}
+               onChange={(value) => setCategoryFilter(value as string)}
                options={[
                   { label: dictionary.companies.categoryFilter, value: 'all' },
                   { label: 'Product', value: 'product' },
@@ -132,17 +137,25 @@ export default function CompaniesPage({
                   setOpenDropdown(openDropdown === 'country' ? null : 'country')
                }
                selected={countryFilter}
-               onChange={setCountryFilter}
+               onChange={(value) => setCountryFilter(value as string)}
                options={countryOptions}
             />
             <button
                onClick={() => setShowFavorites((prev) => !prev)}
-               className={`px-3 py-2 rounded-lg border border-gray-700 hover:border-gray-400 hover:cursor-pointer transition ${
+               className={`px-3 py-2 rounded-lg border bg-black/40 border-gray-700 hover:border-gray-400 hover:cursor-pointer transition ${
                   showFavorites ? 'bg-mist-700 text-gray-200' : 'text-gray-400'
                }`}
             >
                ⭐ Favorites
             </button>
+         </div>
+
+         <div className="flex flex-col mb-2">
+            <p className="text-gray-400 text-sm self-end">
+               {dictionary.companies.showing} {displayedCompanies.length}{' '}
+               {dictionary.companies.of} {count}
+            </p>
+            <hr className="border border-gray-700 my-3" />
          </div>
 
          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -152,6 +165,7 @@ export default function CompaniesPage({
                   company={company}
                   isFavorite={favoriteIds.includes(company.id)}
                   onToggleFavorite={toggleFavorite}
+                  dictionary={dictionary}
                />
             ))}
          </div>

@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
-import { Geist_Mono } from 'next/font/google';
+import { DM_Sans } from 'next/font/google';
 import './globals.css';
+import { Toaster } from 'react-hot-toast';
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+const dmSans = DM_Sans({
+   variable: '--font-dm-sans',
+   subsets: ['latin'],
+});
 
-// ${geistSans.variable}
+// ${dmSans.variable}
 
 export const metadata: Metadata = {
    title: 'Create Next App',
@@ -20,8 +21,11 @@ export default function RootLayout({
    children: React.ReactNode;
 }>) {
    return (
-      <html lang="es" className={`h-full antialiased`}>
-         <body className="min-h-full flex flex-col">{children}</body>
+      <html lang="es" className={`h-full antialiased ${dmSans.variable}`}>
+         <body className="min-h-full flex flex-col">
+            {children}
+            <Toaster position="bottom-right" />
+         </body>
       </html>
    );
 }

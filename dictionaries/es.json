@@ -12,8 +12,22 @@
    },
    "companies": {
       "title": "Empresas",
+      "description": "Explora empresas por categoría y país. Usa los filtros para encontrar rápidamente las opciones más relevantes.",
       "search": "Buscar empresas...",
       "countryFilter": "Filtrar por país",
-      "categoryFilter": "Filtrar por categoría"
+      "categoryFilter": "Filtrar por categoría",
+      "showing": "Mostrando",
+      "of": "de",
+      "visit": "Ir al sitio"
+   },
+   "suggest": {
+      "title": "Sugiere una compañía",
+      "name": "Nombre de la compañía",
+      "website": "Sitio web",
+      "select": "Seleccionar un país",
+      "sending": "Enviando...",
+      "submit": "Enviar",
+      "success": "Sugerencia enviada con éxito",
+      "error": "Error al enviar la sugerencia"
    }
 }

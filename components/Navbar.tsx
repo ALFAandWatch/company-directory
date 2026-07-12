@@ -27,7 +27,7 @@ export default function Navbar({ dictionary, lang }: NavbarProps) {
 
    return (
       <>
-         <nav className="w-full flex items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
+         <nav className="w-full sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
             {/* LOGO */}
             <Link href={`/${lang}`} className="font-bold text-xl">
                CompanyHub
@@ -35,13 +35,18 @@ export default function Navbar({ dictionary, lang }: NavbarProps) {
 
             {/* LINKS */}
             <div className="hidden md:flex gap-6">
-               <Link href={`/${lang}`}>{dictionary.navbar.home}</Link>
+               <Link href={`/${lang}`} className="hover:text-teal-400">
+                  {dictionary.navbar.home}
+               </Link>
 
-               <Link href={`/${lang}/companies`}>
+               <Link
+                  href={`/${lang}/companies`}
+                  className="hover:text-teal-400"
+               >
                   {dictionary.navbar.companies}
                </Link>
 
-               <Link href={`/${lang}/suggest`}>
+               <Link href={`/${lang}/suggest`} className="hover:text-teal-400">
                   {dictionary.navbar.suggest}
                </Link>
             </div>

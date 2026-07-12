@@ -12,8 +12,22 @@
    },
    "companies": {
       "title": "Companies",
+      "description": "Explore companies by category and country. Use the filters to quickly find the most relevant options.",
       "search": "Search companies...",
       "countryFilter": "Filter by country",
-      "categoryFilter": "Filter by category"
+      "categoryFilter": "Filter by category",
+      "showing": "Showing",
+      "of": "of",
+      "visit": "Visit site"
+   },
+   "suggest": {
+      "title": "Suggest a Company",
+      "name": "Company Name",
+      "website": "Website",
+      "select": "Select a country",
+      "sending": "Sending...",
+      "submit": "Submit",
+      "success": "Suggestion sent successfully",
+      "error": "Error sending suggestion"
    }
 }

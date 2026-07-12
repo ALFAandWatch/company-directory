@@ -5,19 +5,27 @@ type Props = {
    company: Company;
    isFavorite: boolean;
    onToggleFavorite: (id: string) => void;
+   dictionary: any;
 };
 
 export default function CompanyCard({
    company,
    isFavorite,
    onToggleFavorite,
+   dictionary,
 }: Props) {
    return (
-      <div className="p-5 border rounded-2xl bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+      <div className="p-5 border border-gray-600 hover:border-sky-600 rounded-2xl bg-linear-to-b from-slate-950 to-slate-900 hover:to-slate-800 shadow-md transition flex flex-col justify-between">
          {/* TOP */}
          <div>
             {/* NAME */}
-            <h2 className="text-lg font-semibold mb-1">{company.name}</h2>
+            <h2 className="text-2xl font-semibold text-gray-100">
+               {company.name}
+            </h2>
+            <p className="inline-block text-gray-400 bg-mist-800 text-sm my-1 p-1 px-3 rounded-sm">
+               {company.category.charAt(0).toUpperCase() +
+                  company.category.slice(1)}
+            </p>
 
             {/* COUNTRY */}
             {company.countries.length > 0 && (
@@ -43,12 +51,23 @@ export default function CompanyCard({
                   href={company.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-blue-600 hover:underline"
+                  className="text-sm font-medium text-sky-600 hover:underline"
                >
-                  Visit →
+                  {dictionary.companies.visit} →
                </a>
             ) : (
                <span className="text-sm text-zinc-400">No website</span>
+            )}
+
+            {company.careers && (
+               <a
+                  href={company.careers}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-sky-600 hover:underline"
+               >
+                  View Careers →
+               </a>
             )}
 
             {/* FUTURE: FAVORITE */}

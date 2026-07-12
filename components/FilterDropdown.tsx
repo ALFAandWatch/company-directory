@@ -8,10 +8,12 @@ type Option = {
 type Props = {
    id: string;
    options: Option[];
-   selected: string;
-   onChange: (value: string) => void;
+   selected: string | string[];
+   onChange: (value: string | string[]) => void;
    isOpen: boolean;
    onToggle: () => void;
+   dictionary?: any;
+   testId?: string;
 };
 
 export default function FilterDropdown({
@@ -21,16 +23,22 @@ export default function FilterDropdown({
    options,
    selected,
    onChange,
+   dictionary,
 }: Props) {
    const selectedLabel =
-      options.find((opt) => opt.value === selected)?.label || 'Select';
+      options.find((opt) => opt.value === selected)?.label ||
+      `${dictionary.suggest.select}`;
 
    const textColor = selected === 'all' ? 'text-gray-500' : 'text-gray-200';
 
+   const isMulti = Array.isArray(selected);
+
    return (
-      <div className="relative w-64">
+      <div className="relative w-64 bg-black/40">
          {/* BOTÓN */}
          <button
+            type="button"
+            data-testid={`suggestion-country`}
             onClick={onToggle}
             className={`flex justify-between w-full px-4 py-2 border border-gray-700 hover:border-gray-400 hover:cursor-pointer rounded-lg text-left ${textColor}`}
          >
@@ -50,9 +58,19 @@ export default function FilterDropdown({
                {options.map((option) => (
                   <button
                      key={option.value}
+                     data-testid={`test-${option.value}`}
+                     type="button"
                      onClick={() => {
-                        onChange(option.value);
-                        onToggle();
+                        if (isMulti) {
+                           const newValue = selected.includes(option.value)
+                              ? selected.filter((v) => v !== option.value)
+                              : [...selected, option.value];
+
+                           onChange(newValue);
+                        } else {
+                           onChange(option.value);
+                           onToggle();
+                        }
                      }}
                      className="block w-full text-left px-4 py-2 rounded-md hover:bg-mist-900 hover:cursor-pointer"
                   >
