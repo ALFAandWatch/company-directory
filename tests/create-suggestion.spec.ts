@@ -5,7 +5,10 @@ test('should create a suggestion successfully', async ({ page }) => {
    await page.goto('http://localhost:3000/es/suggest');
 
    // 2. Completar nombre
-   await page.fill('[data-testid="suggestion-name"]', 'Test Company 2');
+   await page.fill(
+      '[data-testid="suggestion-name"]',
+      `Test Company ${Date.now()}`
+   );
 
    // 3. Completar website
    await page.fill('[data-testid="suggestion-website"]', 'https://test2.com');
