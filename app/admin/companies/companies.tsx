@@ -9,7 +9,17 @@ export default async function CompaniesPage() {
    // 🔹 1. Query
    const { data: companies, error } = await supabase
       .from('companies')
-      .select('*')
+      .select(
+         `*,
+            company_countries(
+               countries (
+                  id,
+                  name,
+                  code
+               )
+            )
+         `
+      )
       .order('created_at', { ascending: false });
 
    // 🔹 2. Error handling
@@ -17,6 +27,8 @@ export default async function CompaniesPage() {
       console.error(error);
       return <div>Error cargando companies</div>;
    }
+
+   console.log('COMPANIES CON COUNTRIES:', companies);
 
    // 🔹 3. Render
    return (

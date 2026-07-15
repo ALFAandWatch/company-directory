@@ -58,33 +58,37 @@ export default function CompaniesTable({ companies }: { companies: any[] }) {
                      <th>Category</th>
                      <th>Website</th>
                      <th>Careers</th>
+                     <th>Countries</th>
                      <th>Created</th>
                      <th>Actions</th>
                   </tr>
                </thead>
 
                <tbody>
-                  {companies.map((company) => (
-                     <tr
-                        key={company.id}
-                        className="border-b border-neutral-800"
-                     >
-                        <td>{company.name}</td>
-                        <td>{company.category}</td>
-                        <td>{company.website}</td>
-                        <td>{company.careers}</td>
-                        <td>{formatDate(company.created_at)}</td>
+                  {companies.map((c) => (
+                     <tr key={c.id} className="border-b border-neutral-800">
+                        <td>{c.name}</td>
+                        <td>{c.category}</td>
+                        <td>{c.website}</td>
+                        <td>{c.careers}</td>
+                        <td className="max-w-50 truncate">
+                           {c.company_countries
+                              ?.map((cc: any) => cc.countries?.name)
+                              .filter(Boolean)
+                              .join(', ') || '—'}
+                        </td>
+                        <td>{formatDate(c.created_at)}</td>
 
                         {/* ACTIONS */}
                         <td className="flex gap-2 py-2">
                            {/* EDIT */}
-                           <EditButton company={company} />
+                           <EditButton company={c} />
 
                            {/* DELETE */}
-                           {deleteId === company.id ? (
+                           {deleteId === c.id ? (
                               <button
                                  disabled={countdown > 0}
-                                 onClick={() => handleDelete(company.id)}
+                                 onClick={() => handleDelete(c.id)}
                                  className="px-2 py-1 text-xs bg-red-500 text-white rounded disabled:opacity-50 hover:cursor-pointer"
                               >
                                  {countdown > 0
@@ -94,7 +98,7 @@ export default function CompaniesTable({ companies }: { companies: any[] }) {
                            ) : (
                               <button
                                  disabled={isDeleting}
-                                 onClick={() => startDelete(company.id)}
+                                 onClick={() => startDelete(c.id)}
                                  className="px-2 py-1 text-xs bg-red-400 rounded hover:cursor-pointer"
                               >
                                  Delete
