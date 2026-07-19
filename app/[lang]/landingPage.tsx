@@ -23,7 +23,7 @@ export default function LandingPage({ lang }: LandingPageProps) {
    }, []);
 
    return (
-      <main className="min-h-screen bg-zinc-50 dark:bg-black px-6 py-16 flex flex-col items-center bg-linear-to-t from-cyan-700/30 to-black/1 to-8%">
+      <div className="min-h-screen bg-zinc-50 dark:bg-black px-6 py-16 flex flex-col items-center bg-linear-to-t from-cyan-700/30 to-black/1 to-8%">
          <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,16 +61,18 @@ export default function LandingPage({ lang }: LandingPageProps) {
                         return (
                            <li
                               key={k}
-                              className="flex flex-col items-center mb-6 text-balance"
+                              className="flex flex-col items-center mb-6"
                            >
-                              <div className="flex">
+                              <div className="flex items-center justify-center gap-2 text-center">
                                  <Image
                                     height={25}
                                     width={25}
                                     src="/icons/check.svg"
                                     alt="Check"
                                  />
-                                 <p className="text-zinc-200">{item.title}</p>
+                                 <p className="text-zinc-200 text-center max-w-50 lg:max-w-max">
+                                    {item.title}
+                                 </p>
                               </div>
                               <p className="text-zinc-400 text-center">
                                  {item.description}
@@ -144,6 +146,6 @@ export default function LandingPage({ lang }: LandingPageProps) {
                </div>
             </section>
          </motion.div>
-      </main>
+      </div>
    );
 }

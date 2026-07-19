@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Dictionary, Lang } from '@/types/i18b';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type NavbarProps = {
    dictionary: Dictionary;
@@ -24,6 +24,18 @@ export default function Navbar({ dictionary, lang }: NavbarProps) {
 
       return segments.join('/');
    };
+
+   useEffect(() => {
+      if (isOpen) {
+         document.body.style.overflow = 'hidden';
+      } else {
+         document.body.style.overflow = '';
+      }
+
+      return () => {
+         document.body.style.overflow = '';
+      };
+   }, [isOpen]);
 
    return (
       <>

@@ -7,4 +7,5 @@ export type Company = {
    website: string | null;
    careers?: string | null;
    category: 'product' | 'agency' | 'consulting' | 'startup' | 'other';
+   created_at: string;
 };

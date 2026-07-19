@@ -14,14 +14,34 @@ export default function CompanyCard({
    onToggleFavorite,
    dictionary,
 }: Props) {
+   const isNew = (() => {
+      if (!company.created_at) return false;
+
+      const createdAt = new Date(company.created_at);
+      const now = new Date();
+
+      const diffInMs = now.getTime() - createdAt.getTime();
+      const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+      return diffInDays <= 3;
+   })();
+
    return (
       <div className="p-5 border border-gray-600 hover:border-sky-600 rounded-2xl bg-linear-to-b from-slate-950/50 to-slate-600/30 backdrop-blur-lg shadow-md hover:brightness-125 transition-all duration-700 flex flex-col justify-between">
          {/* TOP */}
          <div>
             {/* NAME */}
-            <h2 className="text-2xl font-semibold text-gray-100">
-               {company.name}
-            </h2>
+            <div className="flex items-center gap-2">
+               <h2 className="text-2xl font-semibold text-gray-100">
+                  {company.name}
+               </h2>
+
+               {isNew && (
+                  <span className="text-[10px] font-semibold bg-linear-to-r from-emerald-400 to-green-600 text-black px-2 py-0.5 rounded-full animate-pulse">
+                     NEW
+                  </span>
+               )}
+            </div>
             <p className="inline-block text-gray-400 bg-mist-800 text-sm my-1 p-1 px-3 rounded-sm">
                {company.category.charAt(0).toUpperCase() +
                   company.category.slice(1)}

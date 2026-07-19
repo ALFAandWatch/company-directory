@@ -19,8 +19,10 @@ export default async function Page({
       data: companies,
       count,
       error,
-   } = await supabaseServer.from('companies').select(
-      `
+   } = await supabaseServer
+      .from('companies')
+      .select(
+         `
       *,
       company_countries (
          countries (
@@ -30,8 +32,9 @@ export default async function Page({
          )
       )
    `,
-      { count: 'exact' }
-   );
+         { count: 'exact' }
+      )
+      .order('created_at', { ascending: false });
 
    // 🔥 fetch countries (para el filtro)
    const { data: countries } = await supabaseServer

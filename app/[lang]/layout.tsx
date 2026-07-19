@@ -24,10 +24,10 @@ export default async function PageLayout({
    return (
       <main
          data-lang={lang}
-         className="relative overflow-x-hidden bg-radial-[at_60%_35%] from-cyan-700/45 to-black to-80% brightness-125"
+         className="relative min-h-screen flex flex-col bg-radial-[at_60%_35%] from-cyan-700/45 to-black to-80%"
       >
          <Navbar dictionary={dict} lang={safeLang} />
-         {children}
+         <div className="flex-1">{children}</div>
       </main>
    );
 }
