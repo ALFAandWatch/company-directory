@@ -1,4 +1,5 @@
 import CompaniesTable from '@/components/CompaniesTable';
+import CreateCompanyButton from '@/components/NewCompanyButton';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
@@ -34,6 +35,8 @@ export default async function CompaniesPage() {
    return (
       <div>
          <h1 className="text-xl font-semibold mb-6">Companies</h1>
+
+         <CreateCompanyButton />
 
          <CompaniesTable companies={companies} />
       </div>

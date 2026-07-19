@@ -6,9 +6,39 @@
       "suggest": "Sugerir"
    },
    "landing": {
-      "title": "Explorador de Empresas",
-      "description": "Descubrí empresas, analizá datos y encontrá oportunidades.",
-      "cta": "Explorar empresas"
+      "hero": {
+         "title": "Encontrá empresas donde te gustaría trabajar.",
+         "description": "Explorá empresas por país, descubrí oportunidades y accedé directamente a sus páginas de careers.",
+         "button": "Explorar empresas"
+      },
+      "features": {
+         "items": [
+            {
+               "title": "Buscá empresas por país",
+               "description": "Encontrá rápidamente empresas según la ubicación que te interese."
+            },
+            {
+               "title": "Explorá diferentes categorías",
+               "description": "Filtrá por tipo de empresa y descubrí nuevas opciones."
+            },
+            {
+               "title": "Accedé directo a sus páginas de careers",
+               "description": "Aplicá sin intermediarios desde las páginas oficiales de cada empresa."
+            }
+         ],
+         "intro": "Creé esta plataforma porque encontrar empresas específicas por país era frustrante y disperso.",
+         "outro": "Quería un lugar simple donde todo esté organizado y sea fácil de explorar."
+      },
+      "community": {
+         "title": "Este directorio crece con la comunidad.",
+         "description": "Si conocés una empresa interesante, te invito a sugerirla.",
+         "button": "Sugerir empresa"
+      },
+      "about": {
+         "title": "Soy Alfonso Gonzalez, desarrollador web enfocado en frontend.",
+         "description": "Creé este proyecto para practicar y resolver un problema real que yo mismo tenía.",
+         "note": "Siempre estoy abierto a feedback y nuevas ideas."
+      }
    },
    "companies": {
       "title": "Empresas",

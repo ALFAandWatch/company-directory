@@ -15,7 +15,7 @@ export default function CompanyCard({
    dictionary,
 }: Props) {
    return (
-      <div className="p-5 border border-gray-600 hover:border-sky-600 rounded-2xl bg-linear-to-b from-slate-950 to-slate-900 hover:to-slate-800 shadow-md transition flex flex-col justify-between">
+      <div className="p-5 border border-gray-600 hover:border-sky-600 rounded-2xl bg-linear-to-b from-slate-950/50 to-slate-600/30 backdrop-blur-lg shadow-md hover:brightness-125 transition-all duration-700 flex flex-col justify-between">
          {/* TOP */}
          <div>
             {/* NAME */}

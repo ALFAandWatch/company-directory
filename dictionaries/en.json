@@ -6,9 +6,39 @@
       "suggest": "Suggest"
    },
    "landing": {
-      "title": "Company Explorer",
-      "description": "Discover companies, analyze data and find opportunities.",
-      "cta": "Explore companies"
+      "hero": {
+         "title": "Find companies you'd like to work for.",
+         "description": "Browse companies by country, discover opportunities, and access their careers pages directly.",
+         "button": "Explore companies"
+      },
+      "features": {
+         "items": [
+            {
+               "title": "Search companies by country",
+               "description": "Quickly find companies based on the location you're interested in."
+            },
+            {
+               "title": "Explore different categories",
+               "description": "Filter by company type and discover new options."
+            },
+            {
+               "title": "Access their careers pages directly",
+               "description": "Apply without intermediaries through each company's official careers page."
+            }
+         ],
+         "intro": "I created this platform because finding specific companies by country was frustrating and scattered.",
+         "outro": "I wanted a simple place where everything is organized and easy to explore."
+      },
+      "community": {
+         "title": "This directory grows with the community.",
+         "description": "If you know an interesting company, feel free to suggest it.",
+         "button": "Suggest a company"
+      },
+      "about": {
+         "title": "I'm Alfonso Gonzalez, a frontend-focused web developer.",
+         "description": "I built this project to practice and solve a real problem I personally faced.",
+         "note": "I'm always open to feedback and new ideas."
+      }
    },
    "companies": {
       "title": "Companies",
