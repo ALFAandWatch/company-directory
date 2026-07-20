@@ -9,19 +9,10 @@ import { useEffect, useState } from 'react';
 
 type LandingPageProps = {
    lang: string;
+   dictionary: Dictionary;
 };
 
-export default function LandingPage({ lang }: LandingPageProps) {
-   const [dict, setDict] = useState<Dictionary>();
-
-   useEffect(() => {
-      const loadDict = async () => {
-         const data = await getDictionary(lang as Lang);
-         setDict(data);
-      };
-      loadDict();
-   }, []);
-
+export default function LandingPage({ lang, dictionary }: LandingPageProps) {
    return (
       <div className="min-h-screen bg-zinc-50 dark:bg-black px-6 py-16 flex flex-col items-center bg-linear-to-t from-cyan-700/30 to-black/1 to-8%">
          <motion.div
@@ -36,12 +27,12 @@ export default function LandingPage({ lang }: LandingPageProps) {
                   Company<span className="text-teal-400">Radar</span>
                </h1>
                <h2 className="text-xl md:text-4xl font-bold text-zinc-900 dark:text-white leading-tight text-balance">
-                  {dict?.landing.hero.title}
+                  {dictionary?.landing.hero.title}
                </h2>
 
                <div className="bg-gray-800/30 backdrop-blur-lg rounded-xl border border-white/10 p-8 max-w-xl">
                   <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-8 text-balance">
-                     {dict?.landing.hero.description}
+                     {dictionary?.landing.hero.description}
                   </p>
                </div>
 
@@ -51,7 +42,7 @@ export default function LandingPage({ lang }: LandingPageProps) {
                      whileTap={{ scale: 0.97 }}
                      className="mt-4 px-8 py-3 text-base font-medium bg-black text-white dark:bg-white dark:text-black rounded-xl shadow-md hover:cursor-pointer"
                   >
-                     {dict?.landing.hero.button}
+                     {dictionary?.landing.hero.button}
                   </motion.button>
                </Link>
             </section>
@@ -60,7 +51,7 @@ export default function LandingPage({ lang }: LandingPageProps) {
             <section className="flex flex-col gap-8 text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl bg-gray-800/30 backdrop-blur-lg rounded-xl border border-white/10 p-8 mx-auto bg-radial-[at_100%_100%] from-cyan-700/45 to-black to-80%">
                <div className="flex flex-col items-start text-start text-balance max-w-3xl mx-auto font-light">
                   <ul>
-                     {dict?.landing.features.items.map((item, k) => {
+                     {dictionary?.landing.features.items.map((item, k) => {
                         return (
                            <li
                               key={k}
@@ -88,11 +79,11 @@ export default function LandingPage({ lang }: LandingPageProps) {
                <hr className="border border-gray-300/10" />
                <div>
                   <p className="text-lg md:text-xl text-zinc-800 dark:text-zinc-200 max-w-lg mx-auto text-center font-light">
-                     {dict?.landing.features.intro}
+                     {dictionary?.landing.features.intro}
                   </p>
 
                   <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                     {dict?.landing.features.outro}
+                     {dictionary?.landing.features.outro}
                   </p>
                </div>
             </section>
@@ -102,11 +93,11 @@ export default function LandingPage({ lang }: LandingPageProps) {
                <div className="flex flex-col lg:flex-row justify-around items-center gap-4 p-15 lg:p-0 text-center w-full max-w-5xl min-h-60 bg-radial-[at_70%_100%] from-cyan-700/60 to-black to-100% rounded-2xl hover:brightness-155 transition-brightness duration-800">
                   <div className="flex flex-col gap-10 lg:gap-0">
                      <p className="text-2xl font-semibold text-zinc-900 dark:text-white lg:text-start">
-                        {dict?.landing.community.title}
+                        {dictionary?.landing.community.title}
                      </p>
 
                      <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-md lg:text-start text-balance lg:text-nowrap">
-                        {dict?.landing.community.description}
+                        {dictionary?.landing.community.description}
                      </p>
                   </div>
                   <Link href={`/${lang}/suggest`}>
@@ -115,7 +106,7 @@ export default function LandingPage({ lang }: LandingPageProps) {
                         whileTap={{ scale: 0.97 }}
                         className="mt-5 lg:mt-0 px-8 py-3 text-base font-medium bg-black text-white dark:bg-white dark:text-black rounded-full shadow-md hover:cursor-pointer"
                      >
-                        {dict?.landing.community.button}
+                        {dictionary?.landing.community.button}
                      </motion.button>
                   </Link>
                </div>
@@ -136,7 +127,7 @@ export default function LandingPage({ lang }: LandingPageProps) {
                   {/* 👉 reemplazar por tu imagen real */}
 
                   <p className="text-lg font-medium text-zinc-800 dark:text-zinc-200">
-                     {dict?.landing.about.title}
+                     {dictionary?.landing.about.title}
                   </p>
 
                   <Link href="https://www.linkedin.com/in/alfonso-gonzalez-desarrollador/">
@@ -150,11 +141,11 @@ export default function LandingPage({ lang }: LandingPageProps) {
                   </Link>
 
                   <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-md text-center">
-                     {dict?.landing.about.description}
+                     {dictionary?.landing.about.description}
                   </p>
 
                   <p className="text-sm text-zinc-500 dark:text-zinc-500">
-                     {dict?.landing.about.note}
+                     {dictionary?.landing.about.note}
                   </p>
                </div>
             </section>
