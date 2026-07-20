@@ -71,7 +71,48 @@ export function EditButton({ company }: { company: any }) {
                      selectedCountries={selectedCountries}
                      onCountriesChange={setSelectedCountries}
                      onSubmit={async (values) => {
-                        // misma lógica que ya tenés
+                        // 1. actualizar company
+                        const { error: updateError } = await supabaseClient
+                           .from('companies')
+                           .update(values)
+                           .eq('id', company.id);
+
+                        if (updateError) {
+                           console.error(updateError);
+                           return;
+                        }
+
+                        // 2. borrar relaciones actuales
+                        const { error: deleteError } = await supabaseClient
+                           .from('company_countries')
+                           .delete()
+                           .eq('company_id', company.id);
+
+                        if (deleteError) {
+                           console.error(deleteError);
+                           return;
+                        }
+
+                        // 3. insertar nuevas relaciones
+                        if (selectedCountries.length > 0) {
+                           const relations = selectedCountries.map((c) => ({
+                              company_id: company.id,
+                              country_id: c.id,
+                           }));
+
+                           const { error: insertError } = await supabaseClient
+                              .from('company_countries')
+                              .insert(relations);
+
+                           if (insertError) {
+                              console.error(insertError);
+                              return;
+                           }
+                        }
+
+                        // 4. cerrar modal + refresh
+                        setOpen(false);
+                        router.refresh();
                      }}
                      onCancel={() => {
                         setOpen(false);
