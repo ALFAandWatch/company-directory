@@ -5,11 +5,24 @@ import CompanyForm from './CompanyForm';
 import { supabaseClient } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 import { Country } from '@/types/Country';
+import { CompanyType } from '@/types/CompanyType';
 
 export default function CreateCompanyButton() {
    const [selectedCountries, setSelectedCountries] = useState<Country[]>([]);
    const [open, setOpen] = useState(false);
    const router = useRouter();
+
+   const initialValues: {
+      name: string;
+      category: CompanyType | '';
+      website: string;
+      careers: string;
+   } = {
+      name: '',
+      category: '',
+      website: '',
+      careers: '',
+   };
 
    return (
       <>
@@ -33,12 +46,7 @@ export default function CreateCompanyButton() {
                   onClick={(e) => e.stopPropagation()}
                >
                   <CompanyForm
-                     initialValues={{
-                        name: '',
-                        category: '',
-                        website: '',
-                        careers: '',
-                     }}
+                     initialValues={initialValues}
                      selectedCountries={selectedCountries}
                      onCountriesChange={setSelectedCountries}
                      onSubmit={async (values) => {

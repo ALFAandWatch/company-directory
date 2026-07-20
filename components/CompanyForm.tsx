@@ -5,11 +5,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { supabaseClient } from '@/lib/supabaseClient';
 import { approveSchema } from '@/validations/approveSchema';
 import { Country } from '@/types/Country';
+import { COMPANY_TYPES, CompanyType } from '@/types/CompanyType';
 
 type Props = {
    initialValues: {
       name: string;
-      category: string;
+      category: CompanyType | '';
       website: string;
       careers: string;
    };
@@ -66,11 +67,12 @@ export default function CompanyForm({
                   className="p-2 bg-neutral-800 rounded"
                >
                   <option value="">Select category</option>
-                  <option value="product">Product</option>
-                  <option value="agency">Agency</option>
-                  <option value="consulting">Consulting</option>
-                  <option value="startup">Startup</option>
-                  <option value="other">Other</option>
+
+                  {COMPANY_TYPES.map((type) => (
+                     <option key={type} value={type}>
+                        {type}
+                     </option>
+                  ))}
                </Field>
 
                <Field

@@ -3,9 +3,8 @@
 import { useEffect, useState } from 'react';
 import { supabaseClient } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { editCompanySchema } from '@/validations/editCompanySchema';
 import CompanyForm from './CompanyForm';
+import { COMPANY_TYPES, CompanyType } from '@/types/CompanyType';
 
 type Country = {
    id: string;
@@ -21,14 +20,6 @@ export function EditButton({ company }: { company: any }) {
       company.company_countries?.map((cc: any) => cc.countries) || []
    );
    const [allCountries, setAllCountries] = useState<Country[]>([]);
-
-   const validCategories = [
-      'product',
-      'agency',
-      'consulting',
-      'startup',
-      'other',
-   ];
 
    useEffect(() => {
       const fetchCountries = async () => {
@@ -69,7 +60,9 @@ export function EditButton({ company }: { company: any }) {
                   <CompanyForm
                      initialValues={{
                         name: company.name || '',
-                        category: validCategories.includes(company.category)
+                        category: COMPANY_TYPES.includes(
+                           company.category as CompanyType
+                        )
                            ? company.category
                            : '',
                         website: company.website || '',
