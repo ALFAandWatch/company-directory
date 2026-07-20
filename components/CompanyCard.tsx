@@ -31,21 +31,22 @@ export default function CompanyCard({
          {/* TOP */}
          <div>
             {/* NAME */}
-            <div className="flex items-center gap-2">
-               <h2 className="text-2xl font-semibold text-gray-100">
-                  {company.name}
-               </h2>
 
+            <h2 className="text-2xl font-semibold text-gray-100">
+               {company.name}
+            </h2>
+
+            <div className="flex items-center gap-2">
+               <p className="inline-block text-gray-400 bg-mist-800 text-sm my-1 p-1 px-3 rounded-sm">
+                  {company.category.charAt(0).toUpperCase() +
+                     company.category.slice(1)}
+               </p>
                {isNew && (
                   <span className="text-[10px] font-semibold bg-linear-to-r from-emerald-400 to-green-600 text-black px-2 py-0.5 rounded-full animate-pulse">
                      NEW
                   </span>
                )}
             </div>
-            <p className="inline-block text-gray-400 bg-mist-800 text-sm my-1 p-1 px-3 rounded-sm">
-               {company.category.charAt(0).toUpperCase() +
-                  company.category.slice(1)}
-            </p>
 
             {/* COUNTRY */}
             {company.countries.length > 0 && (
