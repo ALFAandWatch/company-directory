@@ -87,7 +87,7 @@ export default function CompanyCard({
                   rel="noopener noreferrer"
                   className="text-sm font-medium text-sky-600 hover:underline"
                >
-                  View Careers →
+                  {dictionary.companies.careers} →
                </a>
             )}
 
