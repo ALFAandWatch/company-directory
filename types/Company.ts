@@ -1,3 +1,4 @@
+import { CompanyType } from './CompanyType';
 import { Country } from './Country';
 
 export type Company = {
@@ -6,6 +7,6 @@ export type Company = {
    countries: Country[];
    website: string | null;
    careers?: string | null;
-   category: 'product' | 'agency' | 'consulting' | 'startup' | 'other';
+   category: CompanyType;
    created_at: string;
 };

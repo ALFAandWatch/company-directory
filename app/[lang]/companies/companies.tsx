@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import FilterDropdown from '@/components/FilterDropdown';
 import { Country } from '@/types/Country';
 import getFlagEmoji from '@/utils/getFlagEmoji';
+import { COMPANY_TYPES, CompanyType } from '@/types/CompanyType';
 
 type Props = {
    companies: Company[];
@@ -25,7 +26,9 @@ export default function CompaniesPage({
 }: Props) {
    const [search, setSearch] = useState('');
 
-   const [categoryFilter, setCategoryFilter] = useState('all');
+   const [categoryFilter, setCategoryFilter] = useState<CompanyType | 'all'>(
+      'all'
+   );
    const [countryFilter, setCountryFilter] = useState('all');
    const [showFavorites, setShowFavorites] = useState(false);
 
@@ -91,6 +94,11 @@ export default function CompaniesPage({
       }
    }, []);
 
+   function capitalize(word?: string) {
+      if (!word) return '';
+      return word[0].toUpperCase() + word.slice(1);
+   }
+
    return (
       <main className="p-6 max-w-5xl mx-auto">
          <h1 className="text-3xl font-bold mb-6">
@@ -120,13 +128,15 @@ export default function CompaniesPage({
                   )
                }
                selected={categoryFilter}
-               onChange={(value) => setCategoryFilter(value as string)}
+               onChange={(value) =>
+                  setCategoryFilter(value as CompanyType | 'all')
+               }
                options={[
                   { label: dictionary.companies.categoryFilter, value: 'all' },
-                  { label: 'Product', value: 'product' },
-                  { label: 'Agency', value: 'agency' },
-                  { label: 'Consulting', value: 'consulting' },
-                  { label: 'Startup', value: 'startup' },
+                  ...COMPANY_TYPES.map((type) => ({
+                     label: capitalize(type),
+                     value: type,
+                  })),
                ]}
             />
 

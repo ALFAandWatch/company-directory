@@ -5,6 +5,7 @@ import { supabaseClient } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { approveSchema } from '@/validations/approveSchema';
+import { COMPANY_TYPES, CompanyType } from '@/types/CompanyType';
 
 type Country = {
    id: string;
@@ -20,14 +21,6 @@ export default function ApproveButton({ suggestion }: { suggestion: any }) {
    const [allCountries, setAllCountries] = useState<Country[]>([]);
 
    const router = useRouter();
-
-   const validCategories = [
-      'product',
-      'agency',
-      'consulting',
-      'startup',
-      'other',
-   ];
 
    useEffect(() => {
       const fetchCountries = async () => {
@@ -61,7 +54,9 @@ export default function ApproveButton({ suggestion }: { suggestion: any }) {
                <Formik
                   initialValues={{
                      name: suggestion.name || '',
-                     category: validCategories.includes(suggestion.category)
+                     category: COMPANY_TYPES.includes(
+                        suggestion.category as CompanyType
+                     )
                         ? suggestion.category
                         : '',
                      website: suggestion.website || '',
@@ -127,11 +122,11 @@ export default function ApproveButton({ suggestion }: { suggestion: any }) {
                            className="p-2 bg-neutral-800 rounded"
                         >
                            <option value="">Select category</option>
-                           <option value="product">Product</option>
-                           <option value="agency">Agency</option>
-                           <option value="consulting">Consulting</option>
-                           <option value="startup">Startup</option>
-                           <option value="other">Other</option>
+                           {COMPANY_TYPES.map((type) => (
+                              <option key={type} value={type}>
+                                 {type}
+                              </option>
+                           ))}
                         </Field>
 
                         <ErrorMessage
