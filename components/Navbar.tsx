@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Dictionary, Lang } from '@/types/i18b';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 type NavbarProps = {
    dictionary: Dictionary;
@@ -41,8 +42,18 @@ export default function Navbar({ dictionary, lang }: NavbarProps) {
       <>
          <nav className="w-full sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
             {/* LOGO */}
-            <Link href={`/${lang}`} className="font-bold text-xl">
-               CompanyHub
+            <Link
+               href={`/${lang}`}
+               className="font-bold text-xl flex items-center"
+            >
+               <Image
+                  src="/CompanyRadar-logo.png"
+                  alt="Company Radar Logo"
+                  width={30}
+                  height={30}
+                  className="mr-2"
+               />
+               Company<span className="text-teal-400">Radar</span>
             </Link>
 
             {/* LINKS */}

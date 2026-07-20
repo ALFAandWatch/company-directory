@@ -32,9 +32,12 @@ export default function LandingPage({ lang }: LandingPageProps) {
          >
             {/* 🟣 HERO */}
             <section className="min-h-160 flex flex-col justify-center items-center gap-8 lg:gap-6 px-6 relative bg-radial-[at_60%_35%] from-indigo-700/50 to-black to-80%">
-               <h1 className="text-2xl md:text-5xl font-bold text-zinc-900 dark:text-white leading-tight text-balance">
-                  {dict?.landing.hero.title}
+               <h1 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-white leading-tight text-balance">
+                  Company<span className="text-teal-400">Radar</span>
                </h1>
+               <h2 className="text-xl md:text-4xl font-bold text-zinc-900 dark:text-white leading-tight text-balance">
+                  {dict?.landing.hero.title}
+               </h2>
 
                <div className="bg-gray-800/30 backdrop-blur-lg rounded-xl border border-white/10 p-8 max-w-xl">
                   <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-8 text-balance">
@@ -135,6 +138,16 @@ export default function LandingPage({ lang }: LandingPageProps) {
                   <p className="text-lg font-medium text-zinc-800 dark:text-zinc-200">
                      {dict?.landing.about.title}
                   </p>
+
+                  <Link href="https://www.linkedin.com/in/alfonso-gonzalez-desarrollador/">
+                     <Image
+                        src="/linkedINlogo.png"
+                        alt="LinkedIN"
+                        width={96}
+                        height={25}
+                        className="hover:brightness-110"
+                     />
+                  </Link>
 
                   <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-md text-center">
                      {dict?.landing.about.description}
