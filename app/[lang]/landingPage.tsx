@@ -132,7 +132,7 @@ export default function LandingPage({ lang, dictionary }: LandingPageProps) {
 
                   <Link href="https://www.linkedin.com/in/alfonso-gonzalez-desarrollador/">
                      <Image
-                        src="/linkedINlogo.png"
+                        src="/LinkedINlogo.png"
                         alt="LinkedIN"
                         width={96}
                         height={25}
